@@ -1,197 +1,158 @@
 const products = [
-  // =========================
+  // -----------------------------
   // Indoor Plants
-  // =========================
-
+  // -----------------------------
   {
     id: 1,
     name: "Snake Plant",
-    category: "Indoor Plants",
     price: 499,
+    category: "Indoor Plants",
     image:
-      "https://images.unsplash.com/photo-1593482892290-f54927ae2a4e?auto=format&fit=crop&w=600&q=80",
-    description:
-      "A hardy indoor plant that requires very little maintenance."
+      "https://images.unsplash.com/photo-1593482892290-f54927ae2b5f?auto=format&fit=crop&w=500&q=80"
   },
   {
     id: 2,
-    name: "Peace Lily",
+    name: "Monstera Deliciosa",
+    price: 799,
     category: "Indoor Plants",
-    price: 599,
     image:
-      "https://images.unsplash.com/photo-1593691509543-c55fb32e5cee?auto=format&fit=crop&w=600&q=80",
-    description:
-      "An elegant indoor plant with beautiful white flowers."
+      "https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&w=500&q=80"
   },
   {
     id: 3,
-    name: "Money Plant",
+    name: "Peace Lily",
+    price: 599,
     category: "Indoor Plants",
-    price: 399,
     image:
-      "https://images.unsplash.com/photo-1614594576370-0f8e8f5f8b4d?auto=format&fit=crop&w=600&q=80",
-    description:
-      "A popular easy-to-grow plant perfect for homes and offices."
+      "https://images.unsplash.com/photo-1593691509543-c55fb32e5cee?auto=format&fit=crop&w=500&q=80"
   },
   {
     id: 4,
-    name: "ZZ Plant",
+    name: "Areca Palm",
+    price: 899,
     category: "Indoor Plants",
-    price: 699,
     image:
-      "https://images.unsplash.com/photo-1632207691140-6b8f7b1e6b2f?auto=format&fit=crop&w=600&q=80",
-    description:
-      "A stylish plant that can tolerate low light and infrequent watering."
+      "https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=500&q=80"
   },
   {
     id: 5,
-    name: "Rubber Plant",
+    name: "ZZ Plant",
+    price: 699,
     category: "Indoor Plants",
-    price: 799,
     image:
-      "https://images.unsplash.com/photo-1598880940080-ff9a29891b85?auto=format&fit=crop&w=600&q=80",
-    description:
-      "A decorative indoor plant with large glossy leaves."
+      "https://images.unsplash.com/photo-1632207691144-0c6d8a5b6c2e?auto=format&fit=crop&w=500&q=80"
   },
   {
     id: 6,
-    name: "Areca Palm",
+    name: "Rubber Plant",
+    price: 749,
     category: "Indoor Plants",
-    price: 899,
     image:
-      "https://images.unsplash.com/photo-1604762524889-3e2fcc145683?auto=format&fit=crop&w=600&q=80",
-    description:
-      "A tropical-looking plant that brings a fresh feel indoors."
+      "https://images.unsplash.com/photo-1604762524889-3e2fcc145683?auto=format&fit=crop&w=500&q=80"
   },
 
-  // =========================
+  // -----------------------------
   // Medicinal Plants
-  // =========================
-
+  // -----------------------------
   {
     id: 7,
     name: "Aloe Vera",
+    price: 399,
     category: "Medicinal Plants",
-    price: 349,
     image:
-      "https://images.unsplash.com/photo-1509423350716-97f9360b4e09?auto=format&fit=crop&w=600&q=80",
-    description:
-      "A popular medicinal plant known for its useful gel."
+      "https://images.unsplash.com/photo-1596547609652-9cf5d8c7a1e1?auto=format&fit=crop&w=500&q=80"
   },
   {
     id: 8,
     name: "Tulsi",
-    category: "Medicinal Plants",
     price: 299,
+    category: "Medicinal Plants",
     image:
-      "https://images.unsplash.com/photo-1512428813834-c702c7702b78?auto=format&fit=crop&w=600&q=80",
-    description:
-      "An aromatic traditional plant commonly grown at home."
+      "https://images.unsplash.com/photo-1615485737651-9d6d0c4f6b2e?auto=format&fit=crop&w=500&q=80"
   },
   {
     id: 9,
-    name: "Lavender",
+    name: "Neem Plant",
+    price: 349,
     category: "Medicinal Plants",
-    price: 449,
     image:
-      "https://images.unsplash.com/photo-1499002238440-d264edd596ec?auto=format&fit=crop&w=600&q=80",
-    description:
-      "A fragrant plant known for its beautiful purple flowers."
+      "https://images.unsplash.com/photo-1597055181300-7a2f6f1c9f7d?auto=format&fit=crop&w=500&q=80"
   },
   {
     id: 10,
-    name: "Mint",
+    name: "Lavender",
+    price: 449,
     category: "Medicinal Plants",
-    price: 249,
     image:
-      "https://images.unsplash.com/photo-1628557044797-f21a177c37ec?auto=format&fit=crop&w=600&q=80",
-    description:
-      "A refreshing herb that is easy to grow at home."
+      "https://images.unsplash.com/photo-1499002238440-d264edd596ec?auto=format&fit=crop&w=500&q=80"
   },
   {
     id: 11,
-    name: "Rosemary",
+    name: "Mint Plant",
+    price: 249,
     category: "Medicinal Plants",
-    price: 399,
     image:
-      "https://images.unsplash.com/photo-1515586000433-45406d8e6662?auto=format&fit=crop&w=600&q=80",
-    description:
-      "An aromatic herb useful for cooking and home gardening."
+      "https://images.unsplash.com/photo-1621937299966-1d7e0c9b8c95?auto=format&fit=crop&w=500&q=80"
   },
   {
     id: 12,
-    name: "Lemongrass",
+    name: "Rosemary",
+    price: 299,
     category: "Medicinal Plants",
-    price: 279,
     image:
-      "https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?auto=format&fit=crop&w=600&q=80",
-    description:
-      "A fragrant herb with refreshing citrus-like aroma."
+      "https://images.unsplash.com/photo-1515586000433-45406d8e6662?auto=format&fit=crop&w=500&q=80"
   },
 
-  // =========================
+  // -----------------------------
   // Air Purifying Plants
-  // =========================
-
+  // -----------------------------
   {
     id: 13,
-    name: "Spider Plant",
+    name: "Boston Fern",
+    price: 549,
     category: "Air Purifying Plants",
-    price: 449,
     image:
-      "https://images.unsplash.com/photo-1572688484438-313a6e50c333?auto=format&fit=crop&w=600&q=80",
-    description:
-      "An easy-care plant commonly used for indoor spaces."
+      "https://images.unsplash.com/photo-1525498128493-380d1990a112?auto=format&fit=crop&w=500&q=80"
   },
   {
     id: 14,
-    name: "Boston Fern",
+    name: "Spider Plant",
+    price: 449,
     category: "Air Purifying Plants",
-    price: 549,
     image:
-      "https://images.unsplash.com/photo-1596547609652-9cf5d8e4f2e3?auto=format&fit=crop&w=600&q=80",
-    description:
-      "A lush fern that adds greenery and freshness indoors."
+      "https://images.unsplash.com/photo-1572688484438-313a6e50c333?auto=format&fit=crop&w=500&q=80"
   },
   {
     id: 15,
-    name: "Bamboo Palm",
+    name: "English Ivy",
+    price: 499,
     category: "Air Purifying Plants",
-    price: 749,
     image:
-      "https://images.unsplash.com/photo-1593691509543-c55fb32e5cee?auto=format&fit=crop&w=600&q=80",
-    description:
-      "A tropical palm suitable for bright indoor spaces."
+      "https://images.unsplash.com/photo-1614594575568-5e4d5b8c0b4a?auto=format&fit=crop&w=500&q=80"
   },
   {
     id: 16,
-    name: "Dracaena",
-    category: "Air Purifying Plants",
+    name: "Chinese Evergreen",
     price: 649,
+    category: "Air Purifying Plants",
     image:
-      "https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=600&q=80",
-    description:
-      "A striking indoor plant that is easy to maintain."
+      "https://images.unsplash.com/photo-1598880940080-ff9a29891b85?auto=format&fit=crop&w=500&q=80"
   },
   {
     id: 17,
-    name: "Chinese Evergreen",
+    name: "Bamboo Palm",
+    price: 849,
     category: "Air Purifying Plants",
-    price: 699,
     image:
-      "https://images.unsplash.com/photo-1597055181300-3e7b5e4a2f47?auto=format&fit=crop&w=600&q=80",
-    description:
-      "A decorative plant that adapts well to indoor conditions."
+      "https://images.unsplash.com/photo-1597055181449-3f9f3f0f0f1f?auto=format&fit=crop&w=500&q=80"
   },
   {
     id: 18,
-    name: "Calathea",
+    name: "Dracaena",
+    price: 749,
     category: "Air Purifying Plants",
-    price: 799,
     image:
-      "https://images.unsplash.com/photo-1593691509543-c55fb32e5cee?auto=format&fit=crop&w=600&q=80",
-    description:
-      "A beautiful tropical plant with distinctive patterned leaves."
+      "https://images.unsplash.com/photo-1574856344991-aaa31b6f4ce3?auto=format&fit=crop&w=500&q=80"
   }
 ];
 
