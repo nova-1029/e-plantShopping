@@ -1,53 +1,88 @@
+import { useDispatch, useSelector } from "react-redux";
+import { addItem } from "../redux/CartSlice";
 import products from "../data/product";
-import ProductCard from "../components/ProductCard";
 
 function ProductList() {
+  const dispatch = useDispatch();
+
+  const cartItems = useSelector(
+    (state) => state.cart.items
+  );
+
   const categories = [
-    "Indoor Plants",
-    "Medicinal Plants",
-    "Air Purifying Plants"
+    ...new Set(products.map((product) => product.category))
   ];
 
-  return (
-    <main className="products-page">
-      <section className="products-header">
-        <p className="section-label">
-          EXPLORE OUR COLLECTION
-        </p>
+  const isInCart = (productId) => {
+    return cartItems.some(
+      (item) => item.id === productId
+    );
+  };
 
-        <h1>Plants for Every Space</h1>
+  const handleAddToCart = (product) => {
+    dispatch(addItem(product));
+  };
+
+  return (
+    <main className="product-list-page">
+      <div className="product-list-header">
+        <h1>Paradise Nursery Plants</h1>
 
         <p>
-          Discover beautiful plants selected to make
-          your home greener and healthier.
+          Explore our collection of beautiful plants for your home
+          and workspace.
         </p>
-      </section>
+      </div>
 
-      {categories.map(category => {
+      {categories.map((category) => {
         const categoryProducts = products.filter(
-          product => product.category === category
+          (product) => product.category === category
         );
 
         return (
           <section
-            key={category}
             className="category-section"
+            key={category}
           >
-            <div className="category-heading">
-              <h2>{category}</h2>
-
-              <span>
-                {categoryProducts.length} plants
-              </span>
-            </div>
+            <h2>{category}</h2>
 
             <div className="product-grid">
-              {categoryProducts.map(product => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                />
-              ))}
+              {categoryProducts.map((product) => {
+                const added = isInCart(product.id);
+
+                return (
+                  <div
+                    className="product-card"
+                    key={product.id}
+                  >
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="product-image"
+                    />
+
+                    <div className="product-info">
+                      <h3>{product.name}</h3>
+
+                      <p className="product-price">
+                        ₹{product.price}
+                      </p>
+
+                      <button
+                        onClick={() =>
+                          handleAddToCart(product)
+                        }
+                        disabled={added}
+                        className="add-to-cart-button"
+                      >
+                        {added
+                          ? "Added to Cart"
+                          : "Add to Cart"}
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </section>
         );
