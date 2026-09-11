@@ -1,175 +1,161 @@
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 import {
-  increaseQuantity,
-  decreaseQuantity,
-  removeFromCart
+  removeItem,
+  updateQuantity
 } from "../redux/CartSlice";
 
 function CartItem() {
   const dispatch = useDispatch();
 
   const cartItems = useSelector(
-    state => state.cart.items
+    (state) => state.cart.items
   );
 
-  const totalAmount = cartItems.reduce(
-    (total, item) =>
-      total + item.price * item.quantity,
-    0
-  );
+  const calculateTotal = () => {
+    return cartItems.reduce(
+      (total, item) =>
+        total + item.price * item.quantity,
+      0
+    );
+  };
 
-  const totalItems = cartItems.reduce(
-    (total, item) => total + item.quantity,
-    0
-  );
+  const handleIncrease = (item) => {
+    dispatch(
+      updateQuantity({
+        id: item.id,
+        quantity: item.quantity + 1
+      })
+    );
+  };
+
+  const handleDecrease = (item) => {
+    dispatch(
+      updateQuantity({
+        id: item.id,
+        quantity: item.quantity - 1
+      })
+    );
+  };
+
+  const handleDelete = (id) => {
+    dispatch(removeItem(id));
+  };
+
+  const handleCheckout = () => {
+    alert(
+      "Checkout functionality is coming soon!"
+    );
+  };
 
   if (cartItems.length === 0) {
     return (
-      <main className="cart-page">
-        <section className="empty-cart">
-          <div className="empty-icon">🛒</div>
+      <main className="cart-page empty-cart">
+        <h1>Your Shopping Cart</h1>
 
-          <h1>Your Cart is Empty</h1>
+        <p>
+          Your cart is currently empty.
+        </p>
 
-          <p>
-            Looks like you haven't added any plants yet.
-          </p>
-
-          <Link to="/plants">
-            <button className="continue-button">
-              Continue Shopping
-            </button>
-          </Link>
-        </section>
+        <Link
+          to="/plants"
+          className="continue-shopping"
+        >
+          Continue Shopping
+        </Link>
       </main>
     );
   }
 
   return (
     <main className="cart-page">
-      <section className="cart-header">
-        <p className="section-label">
-          YOUR SELECTION
-        </p>
+      <h1>Your Shopping Cart</h1>
 
-        <h1>Shopping Cart</h1>
-
-        <p>
-          {totalItems} item
-          {totalItems !== 1 ? "s" : ""} in your cart
-        </p>
-      </section>
-
-      <section className="cart-layout">
+      <div className="cart-container">
         <div className="cart-items">
-          {cartItems.map(item => {
+          {cartItems.map((item) => {
             const itemTotal =
               item.price * item.quantity;
 
             return (
-              <article
-                key={item.id}
+              <div
                 className="cart-item"
+                key={item.id}
               >
                 <img
                   src={item.image}
                   alt={item.name}
-                  className="cart-image"
+                  className="cart-item-image"
                 />
 
-                <div className="cart-item-info">
-                  <span className="category">
-                    {item.category}
-                  </span>
-
+                <div className="cart-item-details">
                   <h2>{item.name}</h2>
 
                   <p>
                     Unit Price: ₹{item.price}
                   </p>
 
-                  <strong>
-                    ₹{itemTotal}
-                  </strong>
-                </div>
+                  <p>
+                    Total: ₹{itemTotal}
+                  </p>
 
-                <div className="quantity-controls">
+                  <div className="quantity-controls">
+                    <button
+                      onClick={() =>
+                        handleDecrease(item)
+                      }
+                    >
+                      -
+                    </button>
+
+                    <span>{item.quantity}</span>
+
+                    <button
+                      onClick={() =>
+                        handleIncrease(item)
+                      }
+                    >
+                      +
+                    </button>
+                  </div>
+
                   <button
+                    className="delete-button"
                     onClick={() =>
-                      dispatch(
-                        decreaseQuantity(item.id)
-                      )
-                    }
-                    disabled={item.quantity === 1}
-                  >
-                    −
-                  </button>
-
-                  <span>{item.quantity}</span>
-
-                  <button
-                    onClick={() =>
-                      dispatch(
-                        increaseQuantity(item.id)
-                      )
+                      handleDelete(item.id)
                     }
                   >
-                    +
+                    Delete
                   </button>
                 </div>
-
-                <button
-                  className="delete-button"
-                  onClick={() =>
-                    dispatch(
-                      removeFromCart(item.id)
-                    )
-                  }
-                >
-                  Delete
-                </button>
-              </article>
+              </div>
             );
           })}
         </div>
 
         <aside className="cart-summary">
-          <h2>Order Summary</h2>
+          <h2>Cart Summary</h2>
 
-          <div className="summary-row">
-            <span>Items</span>
-            <span>{totalItems}</span>
-          </div>
-
-          <div className="summary-row">
-            <span>Subtotal</span>
-            <span>₹{totalAmount}</span>
-          </div>
-
-          <div className="summary-total">
-            <span>Total</span>
-            <strong>₹{totalAmount}</strong>
-          </div>
+          <p className="cart-total">
+            Total Amount: ₹{calculateTotal()}
+          </p>
 
           <button
             className="checkout-button"
-            onClick={() =>
-              alert("Checkout Coming Soon!")
-            }
+            onClick={handleCheckout}
           >
             Checkout
           </button>
 
           <Link
             to="/plants"
-            className="continue-link"
+            className="continue-shopping"
           >
             Continue Shopping
           </Link>
         </aside>
-      </section>
+      </div>
     </main>
   );
 }
